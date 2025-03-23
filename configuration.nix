@@ -73,12 +73,10 @@
     thunar-volman
   ];
 
-  # Enable automatic login for the user.
-  services.getty.autologinUser = "vlixz";
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Enable hyprland and set sddm as the greeter
   programs.hyprland.enable = true;
 
   services.displayManager.sddm.enable = true;
@@ -114,6 +112,7 @@
     direnv
   ];
 
+  # Enable gnome keyring and automatically unlock if when loggin in with sddm
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
 
