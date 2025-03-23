@@ -9,9 +9,6 @@
     $fileManager = dolphin
     $menu = wofi --show drun
 
-    windowrulev2 = float,title:^(Authentication Required)$
-    windowrulev2 = center,title:^(Authentication Required)$
-
     input {
       kb_layout = us
       sensitivity = 0
@@ -136,10 +133,16 @@
     # No gaps when only one window
     workspace = w[tv1], gapsout:0, gapsin:0
     workspace = f[1], gapsout:0, gapsin:0
+
     windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
     windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
     windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
     windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
+
+    # Auth pop-up
+    $auth        = title:^(Authentication Required)$
+    windowrulev2 = float,   $auth
+    windowrulev2 = center,  $auth
 
     # 1Password 
     $1password   = title:^(1Password)$
@@ -148,12 +151,17 @@
     windowrulev2 = center,          $1password
     windowrulev2 = size 30% 60%,    $1password
 
-    # TIDAL Hi-Fi
-    windowrulev2 = workspace 4 silent, title:(youtube-music.*)$
-
     # Alacritty
-    windowrule = animation popin, ^(Alacritty)$
-    windowrulev2 = float, center, title:^(Alacritty)$
+    $alacritty   = title:^(Alacritty)$
+    windowrule   = animation popin, $alacritty
+    windowrulev2 = float, center,   $alacritty
+
+    # Thunar
+    $thunar      = class:^(thunar)$
+    windowrulev2 = float,           $thunar 
+    windowrulev2 = pin,             $thunar 
+    windowrulev2 = center,          $thunar 
+    windowrulev2 = size 30% 60%,    $thunar 
 
     # General
     windowrulev2 = suppressevent maximize, class:.* # I liked it (:
@@ -162,9 +170,6 @@
     exec-once = dunst
     exec-once = hyprpaper
     exec-once = goxlr-daemon
-
-    env = HYPRCURSOR_THEME,rose-pine-hyprcursor
-    env = HYPRCURSOR_SIZE,36
   '';
 
   # Wayland environment variables
