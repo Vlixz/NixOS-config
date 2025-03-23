@@ -106,6 +106,7 @@
     wofi
     mako
     git
+    direnv
   ];
 
   fonts.packages = with pkgs; [
