@@ -103,11 +103,19 @@
     hyprcursor
     rose-pine-hyprcursor
 
+    nextcloud-client
+
+    gnome-keyring
+    seahorse
+
     wofi
     mako
     git
     direnv
   ];
+
+  services.gnome.gnome-keyring.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
