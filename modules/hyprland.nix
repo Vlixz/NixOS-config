@@ -166,6 +166,10 @@
     # General
     windowrulev2 = suppressevent maximize, class:.* # I liked it (:
 
+    #feh 
+    $feh         = class:^(feh)$
+    windowrulev2 = float,           $feh
+
     exec-once = lxqt-policykit-agent
     exec-once = dunst
     exec-once = hyprpaper

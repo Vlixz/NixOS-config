@@ -6,10 +6,10 @@
     enable = true;
     settings = {
       preload = [
-        "~/Downloads/wallhaven-5g22q5.png"
+        "~/Nextcloud/Pictures/Personalization/Beyond-the-clouds.png"
       ];
       wallpaper = [
-        "DP-2, ~/Downloads/wallhaven-5g22q5.png"
+        "DP-2, ~/Nextcloud/Pictures/Personalization/Beyond-the-clouds.png"
       ];
     };
   };

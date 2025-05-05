@@ -25,6 +25,13 @@
     "flakes"
   ];
 
+  users.groups.plugdev = { };
+
+  services.udev.extraRules = ''
+    # Raspberry Pi Pico custom udev rule
+    ATTR{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="660", GROUP="plugdev"
+  '';
+
   fonts.fontDir.enable = true;
 
   # Set your time zone.
@@ -58,6 +65,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "plugdev"
     ];
     packages = with pkgs; [ ];
   };
@@ -72,6 +80,10 @@
     thunar-archive-plugin
     thunar-volman
   ];
+
+  # Enable mullvad
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -93,6 +105,8 @@
     xdg-desktop-portal-hyprland
     wl-clipboard
     pavucontrol
+    stm32cubemx
+    jetbrains.clion
 
     grimblast
 
@@ -105,6 +119,7 @@
 
     gnome-keyring
     seahorse
+    file-roller
 
     wofi
     mako
@@ -152,5 +167,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  # Add udev rules to make the Raspberry Pi Pico accessible without sudo
 
 }

@@ -19,6 +19,20 @@
     package = pkgs.rose-pine-hyprcursor;
   };
 
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhsWithPackages (
+      ps: with ps; [
+        libusb1
+        picotool
+        zstd
+        libftdi1
+        openocd
+        hidapi
+      ]
+    );
+  };
+
   home.packages = with pkgs; [
     alacritty
     youtube-music
@@ -26,7 +40,25 @@
     hyprpaper
     osu-lazer
     protonmail-desktop
-    vscode
+    qucs-s
+    ngspice
+    unzip
+    kicad
+    mediawriter
+
+    # vscode-fhs
+
+    # Console tools
+    gcc-arm-embedded
+    ninja
+    gcc
+    pico-sdk
+    python3
+    cmake
+    feh
+    usbutils
+    libusb1
+    picotool
   ];
 
   programs.home-manager.enable = true;
